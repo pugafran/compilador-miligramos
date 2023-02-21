@@ -17,6 +17,7 @@ fi
 if [ "$1" == "-h" ]; then
     echo "Usage: $0 [extension]"
     echo "  extension: The file extension to compile (e.g. c, cpp, etc.). Defaults to 'c'."
+    echo "Version Git"
     exit 0
 fi
 
