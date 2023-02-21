@@ -5,7 +5,10 @@ echo 'Ejecutando compilador miligramos...'
 
 if [ "$1" == "install" ]; then
     echo 'Añadiendo el programa a /usr/local/bin/, es necesario permisos de administrador:'
+    rm compilador-miligramos
+    git clone https://github.com/pugafran/compilador-miligramos
     sudo cp -f compilador-miligramos /usr/local/bin/
+    rm compilador-miligramos
     exit 0
 fi
 	
@@ -18,7 +21,7 @@ if [ "$1" == "-h" ]; then
 fi
 
 for file in *.c; do
-    executable="${file%.*}"
+    executable="${file%.*}" 
     gcc $file -o $executable.mg -w 
 done
 
