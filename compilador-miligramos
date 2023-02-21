@@ -1,0 +1,33 @@
+#!/bin/sh
+
+echo 'Ejecutando compilador miligramos...'
+
+
+if [ "$1" == "install" ]; then
+    echo 'Añadiendo el programa a /usr/local/bin/, es necesario permisos de administrador:'
+    sudo cp -f compilador-miligramos /usr/local/bin/
+    exit 0
+fi
+	
+
+
+if [ "$1" == "-h" ]; then
+    echo "Usage: $0 [extension]"
+    echo "  extension: The file extension to compile (e.g. c, cpp, etc.). Defaults to 'c'."
+    exit 0
+fi
+
+
+if [ -d "./ejecutables" ]; then
+  echo "Moviendo ejecutables a la carpeta"
+  mv *.mg ejecutables
+else
+  echo "El directorio ejecutables no existe, se procede a crear"
+  mkdir ejecutables
+  mv *.mg ejecutables
+fi
+
+for file in *.c; do
+    executable="${file%.*}"
+    gcc $file -o $executable.mg -w 
+done
