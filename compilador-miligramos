@@ -17,6 +17,10 @@ if [ "$1" == "-h" ]; then
     exit 0
 fi
 
+for file in *.c; do
+    executable="${file%.*}"
+    gcc $file -o $executable.mg -w 
+done
 
 if [ -d "./ejecutables" ]; then
   echo "Moviendo ejecutables a la carpeta"
@@ -27,7 +31,4 @@ else
   mv *.mg ejecutables
 fi
 
-for file in *.c; do
-    executable="${file%.*}"
-    gcc $file -o $executable.mg -w 
-done
+
